@@ -31,7 +31,6 @@ HealthCompanion is a web-based healthcare platform designed to improve medical a
 
 ### Backend
 - Flask (Python)  
-- JWT for secure login/authentication  
 - OCR using Google Vision / AWS Textract  
 - Translation APIs (IndicTrans / AI4Bharat or similar)  
 - SQLite (via SQLAlchemy ORM)
