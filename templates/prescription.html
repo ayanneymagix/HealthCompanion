@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Prescription Scanner - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="prescription-container fade-in-up">
+    <!-- Header -->
+    <div class="feature-header text-center mb-4 slide-in-down">
+        <div class="header-icon mb-3 bounce-in">
+            <i class="fas fa-camera text-info pulse" style="font-size: 3rem;"></i>
+        </div>
+        <h2 class="fw-bold text-info" data-translate="scanner-header">Prescription Scanner</h2>
+        <p class="text-muted" data-translate="scanner-subheader">
+            Scan and extract medication details from prescriptions
+        </p>
+    </div>
+
+    <!-- Scan Methods -->
+    <div class="scan-methods mb-4 fade-in-up" style="animation-delay: 0.2s;">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card border-info h-100 hover-lift glow-on-hover" onclick="openCamera()">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-camera text-info mb-3 pulse" style="font-size: 2.5rem;"></i>
+                        <h5 class="card-title" data-translate="take-photo">Take Photo</h5>
+                        <p class="card-text text-muted" data-translate="camera-desc">
+                            Use your camera to scan prescription
+                        </p>
+                        <div class="scan-animation">
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-secondary h-100 hover-lift glow-on-hover" onclick="uploadImage()">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-upload text-secondary mb-3 pulse" style="font-size: 2.5rem;"></i>
+                        <h5 class="card-title" data-translate="upload-image">Upload Image</h5>
+                        <p class="card-text text-muted" data-translate="upload-desc">
+                            Select image from your gallery
+                        </p>
+                        <div class="upload-animation">
+                            <div class="upload-arrow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera/Upload Area -->
+    <div class="scan-area mb-4 fade-in-up" style="animation-delay: 0.3s;">
+        <div class="card border-0 shadow hover-lift">
+            <div class="card-body">
+                <div class="camera-view" id="cameraView" style="display: none;">
+                    <video id="video" class="w-100 rounded hover-glow" style="max-height: 400px;" autoplay></video>
+                    <div class="camera-overlay">
+                        <div class="scan-frame"></div>
+                    </div>
+                    <div class="camera-controls text-center mt-3">
+                        <button class="btn btn-info btn-lg me-2 hover-glow pulse-on-click" onclick="capturePhoto()">
+                            <i class="fas fa-camera me-2"></i>
+                            <span data-translate="capture">Capture</span>
+                        </button>
+                        <button class="btn btn-secondary hover-glow" onclick="stopCamera()">
+                            <i class="fas fa-times me-2"></i>
+                            <span data-translate="cancel">Cancel</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-zone text-center p-5 border-2 border-dashed border-secondary rounded hover-glow" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                        <i class="fas fa-cloud-upload-alt text-secondary mb-3 pulse" style="font-size: 3rem;"></i>
+                        <h5 data-translate="drag-drop">Drag & Drop Prescription Image</h5>
+                        <p class="text-muted" data-translate="or-click">or click to browse files</p>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                        <button class="btn btn-outline-secondary hover-glow hover-lift" onclick="document.getElementById('imageInput').click()">
+                            <i class="fas fa-folder-open me-2"></i>
+                            <span data-translate="browse-files">Browse Files</span>
+                        </button>
+                    </div>
+                </div>
+
+                <canvas id="canvas" style="display: none;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview and Scan -->
+    <div class="preview-section fade-in-up" id="previewSection" style="display: none; animation-delay: 0.4s;">
+        <div class="card border-0 shadow hover-lift">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-image me-2"></i>
+                    <span data-translate="image-preview">Image Preview</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="previewImage" class="img-fluid rounded hover-glow" alt="Prescription Preview">
+                    </div>
+                    <div class="col-md-6">
+                        <h6 data-translate="scan-instructions">Scan Instructions:</h6>
+                        <ul class="list-unstyled">
+                            <li class="slide-in-right" style="animation-delay: 0.1s;"><i class="fas fa-check text-success me-2"></i><span data-translate="clear-image">Ensure image is clear</span></li>
+                            <li class="slide-in-right" style="animation-delay: 0.2s;"><i class="fas fa-check text-success me-2"></i><span data-translate="good-lighting">Good lighting is important</span></li>
+                            <li class="slide-in-right" style="animation-delay: 0.3s;"><i class="fas fa-check text-success me-2"></i><span data-translate="text-visible">All text should be visible</span></li>
+                        </ul>
+                        <button class="btn btn-info btn-lg w-100 hover-glow pulse-on-click" onclick="scanPrescription()">
+                            <i class="fas fa-search me-2"></i>
+                            <span data-translate="scan-now">Scan Prescription</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scanning Progress -->
+    <div class="text-center my-4 fade-in-up" id="scanningProgress" style="display: none;">
+        <div class="scanning-animation mb-3">
+            <div class="spinner-border text-info pulse" role="status">
+                <span class="visually-hidden">Scanning...</span>
+            </div>
+        </div>
+        <p class="mt-2 text-muted" data-translate="scanning-progress">Scanning your prescription...</p>
+        <div class="progress mx-auto hover-glow" style="width: 300px;">
+            <div class="progress-bar bg-info progress-bar-animated" role="progressbar" style="width: 0%" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- Scan Results -->
+    <div class="scan-results fade-in-up" id="scanResults" style="display: none; animation-delay: 0.5s;">
+        <div class="card border-0 shadow hover-lift">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-check-circle me-2 pulse"></i>
+                    <span data-translate="scan-results">Scan Results</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- Extracted Text -->
+                <div class="mb-4">
+                    <h6 data-translate="extracted-text">Extracted Text:</h6>
+                    <div class="bg-light p-3 rounded hover-glow">
+                        <pre id="extractedText" class="mb-0 small"></pre>
+                    </div>
+                </div>
+
+                <!-- Medications -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6 data-translate="medications">Medications:</h6>
+                        <div id="medicationsList" class="list-group">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6 data-translate="dosages">Dosages:</h6>
+                        <div id="dosagesList" class="list-group">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="mb-4">
+                    <h6 data-translate="instructions">Instructions:</h6>
+                    <div class="alert alert-info hover-glow" id="instructionsText">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons d-flex gap-2 flex-wrap">
+                    <button class="btn btn-primary hover-glow hover-lift" onclick="createReminders()">
+                        <i class="fas fa-bell me-2"></i>
+                        <span data-translate="create-reminders">Create Reminders</span>
+                    </button>
+                    <button class="btn btn-info hover-glow hover-lift" onclick="translateResults()">
+                        <i class="fas fa-language me-2"></i>
+                        <span data-translate="translate-results">Translate</span>
+                    </button>
+                    <button class="btn btn-success hover-glow hover-lift" onclick="saveResults()">
+                        <i class="fas fa-save me-2"></i>
+                        <span data-translate="save-results">Save</span>
+                    </button>
+                    <button class="btn btn-outline-secondary hover-glow hover-lift" onclick="scanAnother()">
+                        <i class="fas fa-redo me-2"></i>
+                        <span data-translate="scan-another">Scan Another</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/prescription.js') }}"></script>
+{% endblock %}

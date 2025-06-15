@@ -1,0 +1,126 @@
+{
+  "name": "MediTranslate+",
+  "short_name": "MediTranslate+",
+  "description": "AI-powered healthcare companion for rural communities with medical translation and assistance",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2E7D32",
+  "background_color": "#FFFFFF",
+  "categories": ["health", "medical", "productivity", "education"],
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHZpZXdCb3g9IjAgMCA3MiA3MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjcyIiBoZWlnaHQ9IjcyIiByeD0iMTYiIGZpbGw9IiMyRTdEMzIiLz4KPHN2ZyB4PSIxNiIgeT0iMTYiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Im0yMC41NyAxNi42OC0uNTktLjU5IDIuNTctMi41N2MuNjYtLjY2LjY2LTEuNzMgMC0yLjM5LS42Ni0uNjYtMS43My0uNjYtMi4zOSAwbC0yLjU3IDIuNTctLjU5LS41OWMtLjM5LS4zOS0xLjAyLS4zOS0xLjQxIDBzLS4zOSAxLjAyIDAgMS40MWwuNTkuNTktMi41NyAyLjU3Yy0uNjYuNjYtLjY2IDEuNzMgMCAyLjM5LjY2LjY2IDEuNzMuNjYgMi4zOSAwbDIuNTctMi41Ny41OS41OWMuMzkuMzkgMS4wMi4zOSAxLjQxIDBzLjM5LTEuMDIgMC0xLjQxeiIvPgo8cGF0aCBkPSJNMTIgMmMtNS41MiAwLTEwIDQuNDgtMTAgMTBzNC40OCAxMCAxMCAxMGM1LjUyIDAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTguNWMtNC42OCAwLTguNS0zLjgyLTguNS04LjVTNy4zMiAzLjUgMTIgMy41czguNSAzLjgyIDguNSA4LjUtMy44MiA4LjUtOC41IDguNXoiLz4KPHN2Zz4KPC9zdmc+",
+      "sizes": "72x72",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMjAiIGZpbGw9IiMyRTdEMzIiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Im0yMC41NyAxNi42OC0uNTktLjU5IDIuNTctMi41N2MuNjYtLjY2LjY2LTEuNzMgMC0yLjM5LS42Ni0uNjYtMS43My0uNjYtMi4zOSAwbC0yLjU3IDIuNTctLjU5LS41OWMtLjM5LS4zOS0xLjAyLS4zOS0xLjQxIDBzLS4zOSAxLjAyIDAgMS40MWwuNTkuNTktMi41NyAyLjU3Yy0uNjYuNjYtLjY2IDEuNzMgMCAyLjM5LjY2LjY2IDEuNzMuNjYgMi4zOSAwbDIuNTctMi41Ny41OS41OWMuMzkuMzkgMS4wMi4zOSAxLjQxIDBzLjM5LTEuMDIgMC0xLjQxeiIvPgo8cGF0aCBkPSJNMTIgMmMtNS41MiAwLTEwIDQuNDgtMTAgMTBzNC40OCAxMCAxMCAxMGM1LjUyIDAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTguNWMtNC42OCAwLTguNS0zLjgyLTguNS04LjVTNy4zMiAzLjUgMTIgMy41czguNSAzLjgyIDguNSA4LjUtMy44MiA4LjUtOC41IDguNXoiLz4KPHN2Zz4KPC9zdmc+",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE0NCIgdmlld0JveD0iMCAwIDE0NCAxNDQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNDQiIGhlaWdodD0iMTQ0IiByeD0iMzIiIGZpbGw9IiMyRTdEMzIiLz4KPHN2ZyB4PSIzNiIgeT0iMzYiIHdpZHRoPSI3MiIgaGVpZ2h0PSI3MiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Im0yMC41NyAxNi42OC0uNTktLjU5IDIuNTctMi41N2MuNjYtLjY2LjY2LTEuNzMgMC0yLjM5LS42Ni0uNjYtMS43My0uNjYtMi4zOSAwbC0yLjU3IDIuNTctLjU5LS41OWMtLjM5LS4zOS0xLjAyLS4zOS0xLjQxIDBzLS4zOSAxLjAyIDAgMS40MWwuNTkuNTktMi41NyAyLjU3Yy0uNjYuNjYtLjY2IDEuNzMgMCAyLjM5LjY2LjY2IDEuNzMuNjYgMi4zOSAwbDIuNTctMi41Ny41OS41OWMuMzkuMzkgMS4wMi4zOSAxLjQxIDBzLjM5LTEuMDIgMC0xLjQxeiIvPgo8cGF0aCBkPSJNMTIgMmMtNS41MiAwLTEwIDQuNDgtMTAgMTBzNC40OCAxMCAxMCAxMGM1LjUyIDAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTguNWMtNC42OCAwLTguNS0zLjgyLTguNS04LjVTNy4zMiAzLjUgMTIgMy41czguNSAzLjgyIDguNSA4LjUtMy44MiA4LjUtOC41IDguNXoiLz4KPHN2Zz4KPC9zdmc+",
+      "sizes": "144x144",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDAiIGZpbGw9IiMyRTdEMzIiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Im0yMC41NyAxNi42OC0uNTktLjU5IDIuNTctMi41N2MuNjYtLjY2LjY2LTEuNzMgMC0yLjM5LS42Ni0uNjYtMS43My0uNjYtMi4zOSAwbC0yLjU3IDIuNTctLjU5LS41OWMtLjM5LS4zOS0xLjAyLS4zOS0xLjQxIDBzLS4zOSAxLjAyIDAgMS40MWwuNTkuNTktMi41NyAyLjU3Yy0uNjYuNjYtLjY2IDEuNzMgMCAyLjM5LjY2LjY2IDEuNzMuNjYgMi4zOSAwbDIuNTctMi41Ny41OS41OWMuMzkuMzkgMS4wMi4zOSAxLjQxIDBzLjM5LTEuMDIgMC0xLjQxeiIvPgo8cGF0aCBkPSJNMTIgMmMtNS41MiAwLTEwIDQuNDgtMTAgMTBzNC40OCAxMCAxMCAxMGM1LjUyIDAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTguNWMtNC42OCAwLTguNS0zLjgyLTguNS04LjVTNy4zMiAzLjUgMTIgMy41czguNSAzLjgyIDguNSA4LjUtMy44MiA4LjUtOC41IDguNXoiLz4KPHN2Zz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTA0IiBmaWxsPSIjMkU3RDMyIi8+CjxzdmcgeD0iMTI4IiB5PSIxMjgiIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IndoaXRlIj4KPHBhdGggZD0ibTIwLjU3IDE2LjY4LS41OS0uNTkgMi41Ny0yLjU3Yy42Ni0uNjYuNjYtMS43MyAwLTIuMzktLjY2LS42Ni0xLjczLS42Ni0yLjM5IDBsLTIuNTcgMi41Ny0uNTktLjU5Yy0uMzktLjM5LTEuMDItLjM5LTEuNDEgMHMtLjM5IDEuMDIgMCAxLjQxbC41OS41OS0yLjU3IDIuNTdjLS42Ni42Ni0uNjYgMS43MyAwIDIuMzkuNjYuNjYgMS43My42NiAyLjM5IDBsMi41Ny0yLjU3LjU5LjU5Yy4zOS4zOSAxLjAyLjM5IDEuNDEgMHMuMzktMS4wMiAwLTEuNDF6Ii8+CjxwYXRoIGQ9Ik0xMiAyYy01LjUyIDAtMTAgNC40OC0xMCAxMHM0LjQ4IDEwIDEwIDEwYzUuNTIgMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOC41Yy00LjY4IDAtOC41LTMuODItOC41LTguNVM3LjMyIDMuNSAxMiAzLjVzOC41IDMuODIgOC41IDguNS0zLjgyIDguNS04LjUgOC41eiIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzkwIiBoZWlnaHQ9IjY0NCIgdmlld0JveD0iMCAwIDM5MCA2NDQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzOTAiIGhlaWdodD0iNjQ0IiBmaWxsPSIjRjhGOUZBIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIzOTAiIGhlaWdodD0iODAiIGZpbGw9IiMyRTdEMzIiLz4KPHN2ZyB4PSIyMCIgeT0iMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyelwiLz4KPC9zdmc+Cjx0ZXh0IHg9IjgwIiB5PSI0NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPk1lZGlUcmFuc2xhdGUrPC90ZXh0Pgo8cmVjdCB4PSIyMCIgeT0iMTAwIiB3aWR0aD0iMzUwIiBoZWlnaHQ9IjEwMCIgcng9IjEwIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjREVFMkU2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMjAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTUwIiByeD0iMTAiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNERUUyRTYiLz4KPHJlY3QgeD0iMjAwIiB5PSIyMjAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTUwIiByeD0iMTAiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNERUUyRTYiLz4KPHJlY3QgeD0iMjAiIHk9IjM5MCIgd2lkdGg9IjE3MCIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0id2hpdGUiIHN0cm9rZT0iI0RFRTE2Ii8+CjxyZWN0IHg9IjIwMCIgeT0iMzkwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE1MCIgcng9IjEwIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjREVFMkU2Ii8+CjwvcmVn+",
+      "sizes": "390x844",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Translator",
+      "short_name": "Translate",
+      "description": "Quick access to medical translation",
+      "url": "/translator",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMjAiIGZpbGw9IiMyRTdEMzIiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyeiIvPgo8L3N2Zz4KPC9zdmc+",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Health Assistant",
+      "short_name": "Assistant",
+      "description": "Chat with AI health assistant",
+      "url": "/chatbot",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMjAiIGZpbGw9IiMyOEE3NDUiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0yMCA5VjdIOFY5aDEyWk0yMCAxM1YxMUg4djJoMTJaTTIwIDE3VjE1SDh2MmgxMloiLz4KPC9zdmc+CjwvcmVjdD4KPC9zdmc+",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Scan Prescription",
+      "short_name": "Scan",
+      "description": "Scan prescription with camera",
+      "url": "/prescription",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMjAiIGZpbGw9IiMxN0EyQjgiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik05IDJIOWMtMS4xIDAtMiAuOS0yIDJ2MmgtMkM0IDYgMi45IDYgMiA3djEwYzAgMS4xIDIuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMlY3YzAtMS4xLS45LTItMi0yaC0yVjRjMC0xLjEtLjktMi0yLTJIOXpNOCA0aDh2Mmg4djEwSDRWNmg0VjR6Ii8+CjwvcmVjdD4KPC9zdmc+",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Medication Reminders",
+      "short_name": "Reminders",
+      "description": "Manage medication reminders",
+      "url": "/reminders",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMjAiIGZpbGw9IiNGRkMxMDciLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzYuNDcgMiAyIDYuNDcgMiAxMnM0LjQ3IDEwIDEwIDEwIDEwLTQuNDcgMTAtMTBTMTcuNTMgMiAxMiAyeiIvPgo8L3N2Zz4KPC9yZWN0Pgo8L3N2Zz4=",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "edge_side_panel": {},
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [],
+  "file_handlers": [],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

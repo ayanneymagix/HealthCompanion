@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - MediTranslate+</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .error-illustration {
+            font-size: 6rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .suggestions {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+        
+        .suggestions h5 {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .suggestions li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .suggestions li:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestions a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all var(--transition-fast);
+        }
+        
+        .suggestions a:hover {
+            color: var(--text-color);
+            transform: translateX(5px);
+        }
+        
+        .suggestions i {
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+        
+        .action-buttons {
+            margin-top: 2rem;
+        }
+        
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            top: 10%;
+            left: 10%;
+            font-size: 3rem;
+            color: var(--primary-color);
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            top: 20%;
+            right: 15%;
+            font-size: 2.5rem;
+            color: var(--success-color);
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            bottom: 20%;
+            left: 15%;
+            font-size: 2rem;
+            color: var(--info-color);
+            animation-delay: 4s;
+        }
+        
+        .shape-4 {
+            bottom: 10%;
+            right: 10%;
+            font-size: 3.5rem;
+            color: var(--warning-color);
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
+            }
+            
+            .error-illustration {
+                font-size: 4rem;
+            }
+            
+            .suggestions {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="fade-in">
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <i class="fas fa-heartbeat shape shape-1"></i>
+        <i class="fas fa-stethoscope shape shape-2"></i>
+        <i class="fas fa-pills shape shape-3"></i>
+        <i class="fas fa-user-md shape shape-4"></i>
+    </div>
+
+    <div class="error-container">
+        <div class="error-content fade-in-up">
+            <!-- Error Illustration -->
+            <div class="error-illustration bounce-in">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <!-- Error Code -->
+            <div class="error-code slide-in-down">404</div>
+            
+            <!-- Error Title -->
+            <h1 class="error-title slide-in-left">Page Not Found</h1>
+            
+            <!-- Error Message -->
+            <p class="error-message slide-in-right">
+                Oops! The page you're looking for seems to have wandered off. 
+                Don't worry, our medical AI is still here to help you!
+            </p>
+            
+            <!-- Suggestions -->
+            <div class="suggestions fade-in-up" style="animation-delay: 0.3s;">
+                <h5><i class="fas fa-lightbulb me-2"></i>Where would you like to go?</h5>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home') }}" class="hover-glow">
+                            <i class="fas fa-home"></i>
+                            Back to Home - Main dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('translator') }}" class="hover-glow">
+                            <i class="fas fa-language"></i>
+                            AI Translator - Translate medical terms
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('chatbot') }}" class="hover-glow">
+                            <i class="fas fa-robot"></i>
+                            Health Assistant - Get medical guidance
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('prescription') }}" class="hover-glow">
+                            <i class="fas fa-camera"></i>
+                            Scan Prescription - Upload or scan prescriptions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('reminders') }}" class="hover-glow">
+                            <i class="fas fa-bell"></i>
+                            Medication Reminders - Manage your medications
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons fade-in-up" style="animation-delay: 0.5s;">
+                <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg me-3 hover-glow hover-lift">
+                    <i class="fas fa-home me-2"></i>
+                    Go Home
+                </a>
+                <button onclick="window.history.back()" class="btn btn-outline-secondary btn-lg hover-glow hover-lift">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Go Back
+                </button>
+            </div>
+            
+            <!-- Emergency Contact -->
+            <div class="mt-4 fade-in-up" style="animation-delay: 0.7s;">
+                <div class="alert alert-warning d-inline-block">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Medical Emergency?</strong> Call <strong>108</strong> immediately
+                </div>
+            </div>
+            
+            <!-- Search Box -->
+            <div class="mt-4 fade-in-up" style="animation-delay: 0.9s;">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-lg" 
+                                   placeholder="Search MediTranslate+ features..." 
+                                   id="searchInput">
+                            <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">
+                            Try searching for: translator, chatbot, prescription, reminders, settings
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Theme detection and application
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                return;
+            }
+            
+            // Map search terms to routes
+            const searchMap = {
+                'translator': '/translator',
+                'translate': '/translator',
+                'translation': '/translator',
+                'language': '/translator',
+                'chatbot': '/chatbot',
+                'chat': '/chatbot',
+                'assistant': '/chatbot',
+                'ai': '/chatbot',
+                'health': '/chatbot',
+                'prescription': '/prescription',
+                'scan': '/prescription',
+                'camera': '/prescription',
+                'ocr': '/prescription',
+                'reminders': '/reminders',
+                'reminder': '/reminders',
+                'medication': '/reminders',
+                'medicine': '/reminders',
+                'pills': '/reminders',
+                'alarm': '/reminders',
+                'settings': '/settings',
+                'setting': '/settings',
+                'preferences': '/settings',
+                'config': '/settings',
+                'about': '/about',
+                'team': '/about',
+                'contact': '/about',
+                'home': '/',
+                'dashboard': '/'
+            };
+            
+            // Find matching route
+            for (const [keyword, route] of Object.entries(searchMap)) {
+                if (searchTerm.includes(keyword)) {
+                    window.location.href = route;
+                    return;
+                }
+            }
+            
+            // If no match found, go to home
+            alert('Feature not found. Redirecting to home page.');
+            window.location.href = '/';
+        }
+        
+        // Allow Enter key to search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Add some interactive feedback
+        document.querySelectorAll('.suggestions a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+        
+        // Auto-focus search input after animations
+        setTimeout(() => {
+            document.getElementById('searchInput').focus();
+        }, 2000);
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + H for home
+            if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
+                e.preventDefault();
+                window.location.href = '/';
+            }
+            
+            // Escape to go back
+            if (e.key === 'Escape') {
+                window.history.back();
+            }
+        });
+        
+        console.log('404 Page loaded - MediTranslate+');
+    </script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="settings-container fade-in-up">
+    <!-- Header Section -->
+    <div class="feature-header text-center mb-5 slide-in-down">
+        <div class="header-icon bounce-in">
+            <i class="fas fa-cog text-primary pulse" style="font-size: 4rem;"></i>
+        </div>
+        <h1 class="display-5 fw-bold mb-3">Settings & Preferences</h1>
+        <p class="lead text-muted">Customize your MediTranslate+ experience</p>
+    </div>
+
+    <!-- Settings Sections -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            
+            <!-- Theme Settings -->
+            <div class="card mb-4 border-0 shadow-sm hover-lift fade-in-up" style="animation-delay: 0.1s;">
+                <div class="card-header bg-themed border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-palette text-primary me-2 pulse"></i>
+                        Theme & Appearance
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="themeSelect" class="form-label fw-bold">Color Theme</label>
+                            <select class="form-select hover-glow" id="themeSelect" onchange="changeTheme(this.value)">
+                                <option value="light">Light Mode</option>
+                                <option value="dark">Dark Mode</option>
+                                <option value="auto">Auto (System Preference)</option>
+                            </select>
+                            <small class="text-muted">Choose your preferred color scheme</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Theme Preview</label>
+                            <div class="theme-preview">
+                                <div class="preview-card bg-themed border rounded p-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-heartbeat text-primary me-2"></i>
+                                        <span>MediTranslate+ Preview</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="animationsEnabled" checked onchange="toggleAnimations(this.checked)">
+                                <label class="form-check-label" for="animationsEnabled">
+                                    <i class="fas fa-magic me-1"></i>Enable Animations
+                                </label>
+                                <small class="text-muted d-block">Smooth transitions and effects</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="reducedMotion" onchange="toggleReducedMotion(this.checked)">
+                                <label class="form-check-label" for="reducedMotion">
+                                    <i class="fas fa-universal-access me-1"></i>Reduce Motion
+                                </label>
+                                <small class="text-muted d-block">For motion sensitivity</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Preferences -->
+            <div class="card mb-4 border-0 shadow-sm hover-lift fade-in-up" style="animation-delay: 0.2s;">
+                <div class="card-header bg-themed border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-language text-success me-2 pulse"></i>
+                        Language Preferences
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="defaultLanguage" class="form-label fw-bold">Interface Language</label>
+                            <select class="form-select hover-glow" id="defaultLanguage">
+                                <option value="en">English</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="ta">தமிழ் (Tamil)</option>
+                                <option value="te">తెలుగు (Telugu)</option>
+                                <option value="bn">বাংলা (Bengali)</option>
+                                <option value="gu">ગુજરાતી (Gujarati)</option>
+                                <option value="mr">मराठी (Marathi)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="voiceLanguage" class="form-label fw-bold">Voice Language</label>
+                            <select class="form-select hover-glow" id="voiceLanguage">
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                                <option value="ta">Tamil</option>
+                                <option value="te">Telugu</option>
+                                <option value="bn">Bengali</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="translationDefault" class="form-label fw-bold">Default Translation Direction</label>
+                            <select class="form-select hover-glow" id="translationDefault">
+                                <option value="en-hi">English → Hindi</option>
+                                <option value="hi-en">Hindi → English</option>
+                                <option value="en-ta">English → Tamil</option>
+                                <option value="ta-en">Tamil → English</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch mt-4">
+                                <input class="form-check-input" type="checkbox" id="autoDetectLanguage" checked>
+                                <label class="form-check-label" for="autoDetectLanguage">
+                                    Auto-detect Input Language
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessibility Settings -->
+            <div class="card mb-4 border-0 shadow-sm hover-lift fade-in-up" style="animation-delay: 0.3s;">
+                <div class="card-header bg-themed border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-universal-access text-info me-2 pulse"></i>
+                        Accessibility
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fontSize" class="form-label fw-bold">Font Size</label>
+                            <select class="form-select hover-glow" id="fontSize" onchange="changeFontSize(this.value)">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                                <option value="extra-large">Extra Large</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch mt-4">
+                                <input class="form-check-input" type="checkbox" id="highContrast" onchange="toggleHighContrast(this.checked)">
+                                <label class="form-check-label" for="highContrast">
+                                    High Contrast Mode
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="voiceEnabled" checked>
+                                <label class="form-check-label" for="voiceEnabled">
+                                    <i class="fas fa-microphone me-1"></i>Enable Voice Features
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="autoSpeak" checked>
+                                <label class="form-check-label" for="autoSpeak">
+                                    <i class="fas fa-volume-up me-1"></i>Auto-speak Translations
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="keyboardNavigation" checked>
+                                <label class="form-check-label" for="keyboardNavigation">
+                                    <i class="fas fa-keyboard me-1"></i>Keyboard Navigation
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="screenReader">
+                                <label class="form-check-label" for="screenReader">
+                                    <i class="fas fa-eye me-1"></i>Screen Reader Support
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="card mb-4 border-0 shadow-sm hover-lift fade-in-up" style="animation-delay: 0.4s;">
+                <div class="card-header bg-themed border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-bell text-warning me-2 pulse"></i>
+                        Notifications
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="medicationReminders" checked>
+                                <label class="form-check-label" for="medicationReminders">
+                                    <i class="fas fa-pills me-1"></i>Medication Reminders
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="healthTips" checked>
+                                <label class="form-check-label" for="healthTips">
+                                    <i class="fas fa-lightbulb me-1"></i>Daily Health Tips
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="appointmentReminders" checked>
+                                <label class="form-check-label" for="appointmentReminders">
+                                    <i class="fas fa-calendar me-1"></i>Appointment Reminders
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="systemUpdates">
+                                <label class="form-check-label" for="systemUpdates">
+                                    <i class="fas fa-sync me-1"></i>System Updates
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="reminderSound" class="form-label fw-bold">Reminder Sound</label>
+                            <select class="form-select hover-glow" id="reminderSound">
+                                <option value="default">Default Chime</option>
+                                <option value="gentle" selected>Gentle Bell</option>
+                                <option value="urgent">Urgent Alert</option>
+                                <option value="nature">Nature Sounds</option>
+                                <option value="silent">Silent (Vibration Only)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="snoozeTime" class="form-label fw-bold">Snooze Duration</label>
+                            <select class="form-select hover-glow" id="snoozeTime">
+                                <option value="5">5 minutes</option>
+                                <option value="10" selected>10 minutes</option>
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy & Data -->
+            <div class="card mb-4 border-0 shadow-sm hover-lift fade-in-up" style="animation-delay: 0.5s;">
+                <div class="card-header bg-themed border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-shield-alt text-success me-2 pulse"></i>
+                        Privacy & Data
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="saveChatHistory" checked>
+                                <label class="form-check-label" for="saveChatHistory">
+                                    <i class="fas fa-comments me-1"></i>Save Chat History
+                                </label>
+                                <small class="text-muted d-block">Store conversations for future reference</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="saveTranslations" checked>
+                                <label class="form-check-label" for="saveTranslations">
+                                    <i class="fas fa-language me-1"></i>Save Translation History
+                                </label>
+                                <small class="text-muted d-block">Keep record of past translations</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="analyticsOptIn">
+                                <label class="form-check-label" for="analyticsOptIn">
+                                    <i class="fas fa-chart-line me-1"></i>Anonymous Analytics
+                                </label>
+                                <small class="text-muted d-block">Help improve the app with usage data</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="crashReporting" checked>
+                                <label class="form-check-label" for="crashReporting">
+                                    <i class="fas fa-bug me-1"></i>Crash Reporting
+                                </label>
+                                <small class="text-muted d-block">Send error reports to improve stability</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-danger hover-glow" id="clearAllData" onclick="confirmClearData()">
+                                    <i class="fas fa-trash me-2"></i>Clear All Data
+                                </button>
+                                <button class="btn btn-outline-warning hover-glow" onclick="exportData()">
+                                    <i class="fas fa-download me-2"></i>Export Data
+                                </button>
+                                <button class="btn btn-outline-info hover-glow" onclick="showPrivacyPolicy()">
+                                    <i class="fas fa-file-alt me-2"></i>Privacy Policy
+                                </button>
+                            </div>
+                            <small class="text-muted d-block mt-2">
+                                Clear all data will permanently delete chat history, translations, and prescription scans.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Information -->
+            <div class="card mb-4 border-0 shadow-sm hover-lift fade-in-up" style="animation-delay: 0.6s;">
+                <div class="card-header bg-themed border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-info-circle text-primary me-2 pulse"></i>
+                        App Information
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>Version:</strong> 2.0.0
+                            <small class="text-muted d-block">Latest stable release</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Last Updated:</strong> June 15, 2025
+                            <small class="text-muted d-block">Auto-updates enabled</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Storage Used:</strong> <span id="storageUsed">0 MB</span>
+                            <small class="text-muted d-block">Local app data</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-outline-primary hover-glow" onclick="window.location.href='/about'">
+                                    <i class="fas fa-info me-2"></i>About App
+                                </button>
+                                <button class="btn btn-outline-secondary hover-glow" id="checkUpdates" onclick="checkForUpdates()">
+                                    <i class="fas fa-sync me-2"></i>Check Updates
+                                </button>
+                                <button class="btn btn-outline-success hover-glow" onclick="installApp()">
+                                    <i class="fas fa-download me-2"></i>Install App
+                                </button>
+                                <button class="btn btn-outline-info hover-glow" onclick="showChangelog()">
+                                    <i class="fas fa-list me-2"></i>Changelog
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save Settings Button -->
+            <div class="text-center mb-4 fade-in-up" style="animation-delay: 0.7s;">
+                <button class="btn btn-primary btn-lg px-5 hover-glow pulse-on-click" id="saveSettings" onclick="saveAllSettings()">
+                    <i class="fas fa-save me-2"></i>Save All Settings
+                </button>
+                <button class="btn btn-outline-secondary btn-lg ms-2 hover-glow" id="resetSettings" onclick="resetToDefaults()">
+                    <i class="fas fa-undo me-2"></i>Reset to Default
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="settingsToast" class="toast border-0 shadow" role="alert">
+        <div class="toast-header bg-success text-white border-0">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">Settings</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            Settings saved successfully!
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Confirm Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-exclamation-triangle text-warning mb-3" style="font-size: 3rem;"></i>
+                    <p id="confirmMessage">Are you sure you want to proceed?</p>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary hover-glow" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger hover-glow" id="confirmAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+<script>
+// Settings page specific functionality
+document.addEventListener('DOMContentLoaded', function() {
+    loadCurrentSettings();
+    calculateStorageUsage();
+    setupSettingsListeners();
+});
+
+function loadCurrentSettings() {
+    // Load current theme
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.getElementById('themeSelect').value = currentTheme;
+    
+    // Load other settings from localStorage
+    const settings = JSON.parse(localStorage.getItem('mediTranslateSettings') || '{}');
+    
+    // Apply saved settings to form elements
+    Object.keys(settings).forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+            if (element.type === 'checkbox') {
+                element.checked = settings[key];
+            } else {
+                element.value = settings[key];
+            }
+        }
+    });
+}
+
+function saveAllSettings() {
+    const settings = {};
+    
+    // Collect all form values
+    const formElements = document.querySelectorAll('select, input[type="checkbox"]');
+    formElements.forEach(element => {
+        if (element.type === 'checkbox') {
+            settings[element.id] = element.checked;
+        } else {
+            settings[element.id] = element.value;
+        }
+    });
+    
+    // Save to localStorage
+    localStorage.setItem('mediTranslateSettings', JSON.stringify(settings));
+    
+    // Save theme separately for immediate access
+    localStorage.setItem('theme', settings.themeSelect || 'light');
+    
+    // Send to server
+    fetch('/save_settings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(settings)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSettingsToast('Settings saved successfully!', 'success');
+        } else {
+            showSettingsToast('Failed to save settings', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving settings:', error);
+        showSettingsToast('Error saving settings', 'error');
+    });
+}
+
+function resetToDefaults() {
+    showConfirmModal(
+        'Reset all settings to default values? This cannot be undone.',
+        () => {
+            // Clear localStorage
+            localStorage.removeItem('mediTranslateSettings');
+            localStorage.removeItem('theme');
+            
+            // Reset form to defaults
+            document.getElementById('themeSelect').value = 'light';
+            document.getElementById('fontSize').value = 'medium';
+            
+            // Reset checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                cb.checked = cb.id === 'medicationReminders' || 
+                           cb.id === 'healthTips' || 
+                           cb.id === 'voiceEnabled' || 
+                           cb.id === 'autoSpeak' ||
+                           cb.id === 'animationsEnabled' ||
+                           cb.id === 'saveChatHistory' ||
+                           cb.id === 'saveTranslations' ||
+                           cb.id === 'crashReporting' ||
+                           cb.id === 'keyboardNavigation' ||
+                           cb.id === 'autoDetectLanguage';
+            });
+            
+            // Apply theme change
+            changeTheme('light');
+            
+            showSettingsToast('Settings reset to defaults', 'success');
+        }
+    );
+}
+
+function confirmClearData() {
+    showConfirmModal(
+        'This will permanently delete all your data including chat history, translations, and scanned prescriptions. This cannot be undone.',
+        () => {
+            // Clear all app data
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Clear IndexedDB if used
+            if ('indexedDB' in window) {
+                indexedDB.deleteDatabase('MediTranslateDB');
+            }
+            
+            showSettingsToast('All data cleared successfully', 'success');
+            
+            // Reload page after a delay
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        }
+    );
+}
+
+function exportData() {
+    const allData = {
+        settings: JSON.parse(localStorage.getItem('mediTranslateSettings') || '{}'),
+        chatHistory: JSON.parse(localStorage.getItem('chatHistory') || '[]'),
+        translations: JSON.parse(localStorage.getItem('translationHistory') || '[]'),
+        reminders: JSON.parse(localStorage.getItem('reminders') || '[]'),
+        exportDate: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(allData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = `meditranslate_data_${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    
+    showSettingsToast('Data exported successfully', 'success');
+}
+
+function calculateStorageUsage() {
+    let totalSize = 0;
+    
+    // Calculate localStorage usage
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            totalSize += localStorage[key].length;
+        }
+    }
+    
+    // Convert to MB and display
+    const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
+    document.getElementById('storageUsed').textContent = `${sizeInMB} MB`;
+}
+
+function setupSettingsListeners() {
+    // Add change listeners for real-time updates
+    document.getElementById('themeSelect').addEventListener('change', function() {
+        changeTheme(this.value);
+    });
+    
+    document.getElementById('fontSize').addEventListener('change', function() {
+        changeFontSize(this.value);
+    });
+    
+    document.getElementById('highContrast').addEventListener('change', function() {
+        toggleHighContrast(this.checked);
+    });
+    
+    document.getElementById('animationsEnabled').addEventListener('change', function() {
+        toggleAnimations(this.checked);
+    });
+    
+    document.getElementById('reducedMotion').addEventListener('change', function() {
+        toggleReducedMotion(this.checked);
+    });
+}
+
+function showSettingsToast(message, type = 'success') {
+    const toast = document.getElementById('settingsToast');
+    const toastHeader = toast.querySelector('.toast-header');
+    const toastBody = toast.querySelector('.toast-body');
+    
+    // Update toast appearance based on type
+    toastHeader.className = `toast-header border-0 ${type === 'success' ? 'bg-success' : 'bg-danger'} text-white`;
+    toastBody.textContent = message;
+    
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+}
+
+function showConfirmModal(message, onConfirm) {
+    document.getElementById('confirmMessage').textContent = message;
+    document.getElementById('confirmAction').onclick = () => {
+        onConfirm();
+        bootstrap.Modal.getInstance(document.getElementById('confirmModal')).hide();
+    };
+    
+    const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+    modal.show();
+}
+
+function checkForUpdates() {
+    const btn = document.getElementById('checkUpdates');
+    const originalText = btn.innerHTML;
+    
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Checking...';
+    btn.disabled = true;
+    
+    // Simulate update check
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        showSettingsToast('You have the latest version!', 'success');
+    }, 2000);
+}
+
+function installApp() {
+    if ('serviceWorker' in navigator) {
+        // PWA installation logic would go here
+        showSettingsToast('App installation initiated', 'success');
+    } else {
+        showSettingsToast('App installation not supported on this browser', 'error');
+    }
+}
+
+function showPrivacyPolicy() {
+    window.open('/privacy', '_blank');
+}
+
+function showChangelog() {
+    window.open('/changelog', '_blank');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MediTranslate+{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="var(--primary-color)">
+    
+    <!-- Mobile optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="MediTranslate+">
+</head>
+<body class="fade-in">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Loading MediTranslate+</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top slide-down">
+        <div class="container">
+            <!-- Offline Status Indicator -->
+            <div class="offline-indicator me-3" id="offlineStatus">
+                <i class="fas fa-wifi text-success" id="onlineIcon"></i>
+                <i class="fas fa-wifi-slash text-danger d-none" id="offlineIcon"></i>
+                <span class="status-text ms-1">Online</span>
+            </div>
+            
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold bounce-in" href="{{ url_for('home') }}">
+                <i class="fas fa-heartbeat me-2 text-primary pulse"></i>
+                MediTranslate+
+            </a>
+            
+            <!-- Navbar Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navigation Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link hover-glow" href="{{ url_for('home') }}">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-glow" href="{{ url_for('translator') }}">
+                            <i class="fas fa-language me-1"></i>Translator
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-glow" href="{{ url_for('chatbot') }}">
+                            <i class="fas fa-robot me-1"></i>Assistant
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-glow" href="{{ url_for('reminders') }}">
+                            <i class="fas fa-bell me-1"></i>Reminders
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Theme Toggle & Settings -->
+                <div class="navbar-nav">
+                    <div class="nav-item me-2">
+                        <button class="btn btn-outline-secondary btn-sm theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                            <i class="fas fa-moon" id="themeIcon"></i>
+                        </button>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link hover-glow" href="{{ url_for('settings') }}">
+                            <i class="fas fa-cog me-1"></i>Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-4 fade-in-up">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-4 bg-themed">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="text-muted">
+                        <i class="fas fa-heart text-danger me-1 pulse"></i>
+                        MediTranslate+ - Healthcare for Everyone
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-links">
+                        <a href="{{ url_for('about') }}" class="text-muted me-3 hover-glow">About</a>
+                        <a href="#" class="text-muted me-3 hover-glow">Privacy</a>
+                        <a href="#" class="text-muted hover-glow">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
