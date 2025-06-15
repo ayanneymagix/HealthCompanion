@@ -1,0 +1,124 @@
+{
+  "name": "MediTranslate+",
+  "short_name": "MediTranslate+",
+  "description": "AI-powered healthcare companion for rural communities with translation, chatbot, OCR, and medication reminders",
+  "version": "1.0.0",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#2E7D32",
+  "background_color": "#F8F9FA",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["health", "medical", "utilities"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232E7D32'/%3E%3Cpath d='M30 50h40M50 30v40' stroke='white' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='88' fill='%232E7D32'/%3E%3Cpath d='M56 96h80M96 56v80' stroke='white' stroke-width='16' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='240' fill='%232E7D32'/%3E%3Cpath d='M150 256h212M256 150v212' stroke='white' stroke-width='40' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844'%3E%3Crect width='390' height='844' fill='%23F8F9FA'/%3E%3Crect x='20' y='80' width='350' height='120' rx='15' fill='%23FFFFFF' stroke='%232E7D32' stroke-width='2'/%3E%3Ctext x='195' y='130' text-anchor='middle' fill='%232E7D32' font-size='20' font-weight='bold'%3EMediTranslate+%3C/text%3E%3Ctext x='195' y='155' text-anchor='middle' fill='%236C757D' font-size='14'%3EHealthcare for Everyone%3C/text%3E%3C/svg%3E",
+      "sizes": "390x844",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Translator",
+      "short_name": "Translate",
+      "description": "Translate medical terms with voice support",
+      "url": "/translator",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231976D2'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-weight='bold'%3ET%3C/text%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Health Assistant",
+      "short_name": "Chat",
+      "description": "Chat with AI health assistant",
+      "url": "/chatbot",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232E7D32'/%3E%3Ccircle cx='40' cy='45' r='3' fill='white'/%3E%3Ccircle cx='60' cy='45' r='3' fill='white'/%3E%3Cpath d='M35 60 Q50 70 65 60' stroke='white' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Scan Prescription",
+      "short_name": "Scan",
+      "description": "Scan prescription with OCR",
+      "url": "/prescription",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2317A2B8'/%3E%3Crect x='30' y='35' width='40' height='30' rx='5' fill='none' stroke='white' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Medication Reminders",
+      "short_name": "Reminders",
+      "description": "Manage medication schedules",
+      "url": "/reminders",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFC107'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='4'/%3E%3Cline x1='50' y1='35' x2='50' y2='50' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='50' y1='50' x2='60' y2='60' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "share_target": {
+    "action": "/translator",
+    "method": "GET",
+    "params": {
+      "text": "text"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+meditranslate",
+      "url": "/?action=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/prescription",
+      "accept": {
+        "image/*": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"]
+      }
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred"
+}

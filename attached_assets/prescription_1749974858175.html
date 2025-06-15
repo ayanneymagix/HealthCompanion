@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}Prescription Scanner - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="prescription-container">
+    <!-- Header -->
+    <div class="feature-header text-center mb-4">
+        <div class="header-icon mb-3">
+            <i class="fas fa-camera text-info" style="font-size: 3rem;"></i>
+        </div>
+        <h2 class="fw-bold text-info" data-translate="scanner-header">Prescription Scanner</h2>
+        <p class="text-muted" data-translate="scanner-subheader">
+            Scan and extract medication details from prescriptions
+        </p>
+    </div>
+
+    <!-- Scan Methods -->
+    <div class="scan-methods mb-4">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card border-info h-100" onclick="openCamera()">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-camera text-info mb-3" style="font-size: 2.5rem;"></i>
+                        <h5 class="card-title" data-translate="take-photo">Take Photo</h5>
+                        <p class="card-text text-muted" data-translate="camera-desc">
+                            Use your camera to scan prescription
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-secondary h-100" onclick="uploadImage()">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-upload text-secondary mb-3" style="font-size: 2.5rem;"></i>
+                        <h5 class="card-title" data-translate="upload-image">Upload Image</h5>
+                        <p class="card-text text-muted" data-translate="upload-desc">
+                            Select image from your gallery
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera/Upload Area -->
+    <div class="scan-area mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+                <div class="camera-view" id="cameraView" style="display: none;">
+                    <video id="video" class="w-100 rounded" style="max-height: 400px;" autoplay></video>
+                    <div class="camera-controls text-center mt-3">
+                        <button class="btn btn-info btn-lg me-2" onclick="capturePhoto()">
+                            <i class="fas fa-camera me-2"></i>
+                            <span data-translate="capture">Capture</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="stopCamera()">
+                            <i class="fas fa-times me-2"></i>
+                            <span data-translate="cancel">Cancel</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-zone text-center p-5 border-2 border-dashed border-secondary rounded">
+                        <i class="fas fa-cloud-upload-alt text-secondary mb-3" style="font-size: 3rem;"></i>
+                        <h5 data-translate="drag-drop">Drag & Drop Prescription Image</h5>
+                        <p class="text-muted" data-translate="or-click">or click to browse files</p>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                        <button class="btn btn-outline-secondary" onclick="document.getElementById('imageInput').click()">
+                            <i class="fas fa-folder-open me-2"></i>
+                            <span data-translate="browse-files">Browse Files</span>
+                        </button>
+                    </div>
+                </div>
+
+                <canvas id="canvas" style="display: none;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview and Scan -->
+    <div class="preview-section" id="previewSection" style="display: none;">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-image me-2"></i>
+                    <span data-translate="image-preview">Image Preview</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="previewImage" class="img-fluid rounded" alt="Prescription Preview">
+                    </div>
+                    <div class="col-md-6">
+                        <h6 data-translate="scan-instructions">Scan Instructions:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i><span data-translate="clear-image">Ensure image is clear</span></li>
+                            <li><i class="fas fa-check text-success me-2"></i><span data-translate="good-lighting">Good lighting is important</span></li>
+                            <li><i class="fas fa-check text-success me-2"></i><span data-translate="text-visible">All text should be visible</span></li>
+                        </ul>
+                        <button class="btn btn-info btn-lg w-100" onclick="scanPrescription()">
+                            <i class="fas fa-search me-2"></i>
+                            <span data-translate="scan-now">Scan Prescription</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scanning Progress -->
+    <div class="text-center my-4" id="scanningProgress" style="display: none;">
+        <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Scanning...</span>
+        </div>
+        <p class="mt-2 text-muted" data-translate="scanning-progress">Scanning your prescription...</p>
+        <div class="progress mx-auto" style="width: 300px;">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- Scan Results -->
+    <div class="scan-results" id="scanResults" style="display: none;">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span data-translate="scan-results">Scan Results</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- Extracted Text -->
+                <div class="mb-4">
+                    <h6 data-translate="extracted-text">Extracted Text:</h6>
+                    <div class="bg-light p-3 rounded">
+                        <pre id="extractedText" class="mb-0 small"></pre>
+                    </div>
+                </div>
+
+                <!-- Medications -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6 data-translate="medications">Medications:</h6>
+                        <div id="medicationsList" class="list-group">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6 data-translate="dosages">Dosages:</h6>
+                        <div id="dosagesList" class="list-group">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="mb-4">
+                    <h6 data-translate="instructions">Instructions:</h6>
+                    <div class="alert alert-info" id="instructionsText">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons d-flex gap-2 flex-wrap">
+                    <button class="btn btn-primary" onclick="createReminders()">
+                        <i class="fas fa-bell me-2"></i>
+                        <span data-translate="create-reminders">Create Reminders</span>
+                    </button>
+                    <button class="btn btn-info" onclick="translateResults()">
+                        <i class="fas fa-language me-2"></i>
+                        <span data-translate="translate-results">Translate</span>
+                    </button>
+                    <button class="btn btn-success" onclick="saveResults()">
+                        <i class="fas fa-save me-2"></i>
+                        <span data-translate="save-results">Save</span>
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="scanAnother()">
+                        <i class="fas fa-redo me-2"></i>
+                        <span data-translate="scan-another">Scan Another</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offline Fallback -->
+    <div class="offline-fallback mt-4" id="offlineFallback" style="display: none;">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h6 class="mb-0">
+                    <i class="fas fa-wifi-slash me-2"></i>
+                    <span data-translate="offline-mode">Offline Mode</span>
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-3" data-translate="offline-message">
+                    OCR scanning requires internet connection. You can manually enter prescription details:
+                </p>
+                <button class="btn btn-warning" onclick="manualEntry()">
+                    <i class="fas fa-keyboard me-2"></i>
+                    <span data-translate="manual-entry">Manual Entry</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Entry Form -->
+    <div class="manual-entry-form" id="manualEntryForm" style="display: none;">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-keyboard me-2"></i>
+                    <span data-translate="manual-entry-title">Manual Prescription Entry</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="prescriptionForm">
+                    <div class="mb-3">
+                        <label class="form-label" data-translate="medication-name">Medication Name:</label>
+                        <input type="text" class="form-control" id="medName" placeholder="Enter medication name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" data-translate="dosage">Dosage:</label>
+                        <input type="text" class="form-control" id="medDosage" placeholder="e.g., 500mg">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" data-translate="frequency">Frequency:</label>
+                        <select class="form-select" id="medFrequency">
+                            <option value="once_daily">Once Daily</option>
+                            <option value="twice_daily">Twice Daily</option>
+                            <option value="thrice_daily">Thrice Daily</option>
+                            <option value="four_times_daily">Four Times Daily</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" data-translate="instructions">Instructions:</label>
+                        <textarea class="form-control" id="medInstructions" rows="3" placeholder="e.g., Take after meals"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveManualEntry()">
+                        <i class="fas fa-save me-2"></i>
+                        <span data-translate="save-prescription">Save Prescription</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/prescription.js') }}"></script>
+{% endblock %}

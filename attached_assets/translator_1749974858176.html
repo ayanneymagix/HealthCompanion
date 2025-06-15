@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}AI Translator - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="translator-container">
+    <!-- Header -->
+    <div class="feature-header text-center mb-4">
+        <div class="header-icon mb-3">
+            <i class="fas fa-language text-primary" style="font-size: 3rem;"></i>
+        </div>
+        <h2 class="fw-bold text-primary" data-translate="translator-header">AI Medical Translator</h2>
+        <p class="text-muted" data-translate="translator-subheader">
+            Translate medical terms and symptoms with voice support
+        </p>
+    </div>
+
+    <!-- Language Selection -->
+    <div class="language-selector mb-4">
+        <div class="row g-3">
+            <div class="col-md-5">
+                <label class="form-label fw-bold" data-translate="from-language">From Language:</label>
+                <select class="form-select form-select-lg" id="sourceLanguage">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="gu">ગુજરાતી (Gujarati)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                </select>
+            </div>
+            <div class="col-md-2 text-center">
+                <label class="form-label">&nbsp;</label>
+                <button class="btn btn-outline-secondary btn-lg d-block mx-auto" onclick="swapLanguages()">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+            </div>
+            <div class="col-md-5">
+                <label class="form-label fw-bold" data-translate="to-language">To Language:</label>
+                <select class="form-select form-select-lg" id="targetLanguage">
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="en">English</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="gu">ગુજરાતી (Gujarati)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0" data-translate="input-text">Enter Text to Translate</h5>
+                    <div class="voice-controls">
+                        <button class="btn btn-primary" id="voiceInputBtn" onclick="startVoiceInput()">
+                            <i class="fas fa-microphone me-2"></i>
+                            <span data-translate="voice-input">Voice Input</span>
+                        </button>
+                    </div>
+                </div>
+                <textarea 
+                    class="form-control form-control-lg" 
+                    id="inputText" 
+                    rows="4" 
+                    placeholder="Type your text here or use voice input..."
+                    data-translate-placeholder="input-placeholder"
+                ></textarea>
+                
+                <!-- Quick Suggestion Chips -->
+                <div class="suggestion-chips mt-3">
+                    <small class="text-muted mb-2 d-block" data-translate="quick-phrases">Quick Medical Phrases:</small>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary btn-sm" onclick="insertText('I have a headache')">
+                            <i class="fas fa-head-side-cough me-1"></i>Headache
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="insertText('I have fever')">
+                            <i class="fas fa-thermometer-half me-1"></i>Fever
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="insertText('Stomach pain')">
+                            <i class="fas fa-stomach me-1"></i>Stomach Pain
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="insertText('How to take medicine?')">
+                            <i class="fas fa-pills me-1"></i>Medicine Instructions
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="insertText('When to see doctor?')">
+                            <i class="fas fa-user-md me-1"></i>Doctor Visit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Translate Button -->
+    <div class="text-center mb-4">
+        <button class="btn btn-primary btn-lg px-5" id="translateBtn" onclick="translateText()">
+            <i class="fas fa-language me-2"></i>
+            <span data-translate="translate-btn">Translate</span>
+        </button>
+    </div>
+
+    <!-- Output Section -->
+    <div class="output-section" id="outputSection" style="display: none;">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0" data-translate="translation-result">Translation Result</h5>
+                    <div class="audio-controls">
+                        <button class="btn btn-success" id="playAudioBtn" onclick="playTranslation()">
+                            <i class="fas fa-volume-up me-2"></i>
+                            <span data-translate="play-audio">Play Audio</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="translation-result p-3 bg-light rounded">
+                    <p class="mb-0 fs-5" id="translatedText"></p>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons mt-3 d-flex gap-2">
+                    <button class="btn btn-outline-primary" onclick="copyTranslation()">
+                        <i class="fas fa-copy me-2"></i>
+                        <span data-translate="copy-text">Copy</span>
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="clearTranslation()">
+                        <i class="fas fa-eraser me-2"></i>
+                        <span data-translate="clear-text">Clear</span>
+                    </button>
+                    <button class="btn btn-outline-info" onclick="shareTranslation()">
+                        <i class="fas fa-share me-2"></i>
+                        <span data-translate="share-text">Share</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="text-center" id="loadingIndicator" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Translating...</span>
+        </div>
+        <p class="mt-2 text-muted" data-translate="translating">Translating your text...</p>
+    </div>
+
+    <!-- Translation History -->
+    <div class="translation-history mt-5">
+        <h5 class="fw-bold mb-3" data-translate="recent-translations">
+            <i class="fas fa-history me-2"></i>Recent Translations
+        </h5>
+        <div id="historyList" class="history-list">
+            <p class="text-muted text-center" data-translate="no-history">No recent translations</p>
+        </div>
+    </div>
+</div>
+
+<!-- Voice Recording Modal -->
+<div class="modal fade" id="voiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" data-translate="voice-recording">Voice Recording</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="voice-animation mb-3">
+                    <i class="fas fa-microphone text-primary" style="font-size: 3rem;" id="micIcon"></i>
+                </div>
+                <p id="voiceStatus" data-translate="listening">Listening... Speak now</p>
+                <div class="voice-controls mt-3">
+                    <button class="btn btn-danger me-2" onclick="stopVoiceInput()">
+                        <i class="fas fa-stop me-2"></i>Stop
+                    </button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/translator.js') }}"></script>
+{% endblock %}

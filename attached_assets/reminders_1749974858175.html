@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+
+{% block title %}Medication Reminders - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="reminders-container">
+    <!-- Header -->
+    <div class="feature-header text-center mb-4">
+        <div class="header-icon mb-3">
+            <i class="fas fa-bell text-warning" style="font-size: 3rem;"></i>
+        </div>
+        <h2 class="fw-bold text-warning" data-translate="reminders-header">Medication Reminders</h2>
+        <p class="text-muted" data-translate="reminders-subheader">
+            Never miss your medication with smart reminders
+        </p>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats mb-4">
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-pills text-primary"></i>
+                    </div>
+                    <div class="stat-number" id="totalMeds">{{ reminders|length }}</div>
+                    <div class="stat-label" data-translate="total-meds">Total Meds</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock text-info"></i>
+                    </div>
+                    <div class="stat-number" id="todayDoses">0</div>
+                    <div class="stat-label" data-translate="today-doses">Today's Doses</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle text-success"></i>
+                    </div>
+                    <div class="stat-number" id="takenToday">0</div>
+                    <div class="stat-label" data-translate="taken-today">Taken Today</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card text-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle text-danger"></i>
+                    </div>
+                    <div class="stat-number" id="missedToday">0</div>
+                    <div class="stat-label" data-translate="missed-today">Missed Today</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Reminder -->
+    <div class="add-reminder mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-plus me-2"></i>
+                    <span data-translate="add-reminder">Add New Reminder</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="reminderForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="medication-name">Medication Name:</label>
+                            <input type="text" class="form-control" id="reminderMedName" placeholder="Enter medication name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="dosage">Dosage:</label>
+                            <input type="text" class="form-control" id="reminderDosage" placeholder="e.g., 500mg, 2 tablets" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="frequency">Frequency:</label>
+                            <select class="form-select" id="reminderFrequency" onchange="updateTimeSlots()">
+                                <option value="once_daily">Once Daily</option>
+                                <option value="twice_daily">Twice Daily</option>
+                                <option value="three_times_daily">Three Times Daily</option>
+                                <option value="four_times_daily">Four Times Daily</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="time-slots">Time Slots:</label>
+                            <div id="timeSlots">
+                                <input type="time" class="form-control mb-2" name="timeSlot" value="08:00">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" data-translate="notes">Notes (Optional):</label>
+                            <textarea class="form-control" id="reminderNotes" rows="2" placeholder="e.g., Take with food, After meals"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>
+                                <span data-translate="save-reminder">Save Reminder</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Today's Schedule -->
+    <div class="todays-schedule mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-calendar-day me-2"></i>
+                    <span data-translate="todays-schedule">Today's Schedule</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="timeline" id="todayTimeline">
+                    <div class="text-center text-muted py-4" id="noScheduleToday">
+                        <i class="fas fa-calendar-check mb-2" style="font-size: 2rem;"></i>
+                        <p data-translate="no-schedule">No medications scheduled for today</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Reminders -->
+    <div class="all-reminders">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    <span data-translate="all-reminders">All Reminders</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="remindersList">
+                    {% if reminders %}
+                        {% for reminder in reminders %}
+                        <div class="reminder-item" data-reminder-id="{{ reminder.id }}">
+                            <div class="d-flex align-items-center">
+                                <div class="reminder-icon me-3">
+                                    <i class="fas fa-pills text-primary"></i>
+                                </div>
+                                <div class="reminder-details flex-grow-1">
+                                    <h6 class="mb-1">{{ reminder.medication_name }}</h6>
+                                    <p class="mb-1 text-muted">
+                                        <strong>Dosage:</strong> {{ reminder.dosage }} | 
+                                        <strong>Frequency:</strong> {{ reminder.frequency.replace('_', ' ').title() }}
+                                    </p>
+                                    {% if reminder.notes %}
+                                    <p class="mb-0 small text-info">
+                                        <i class="fas fa-sticky-note me-1"></i>{{ reminder.notes }}
+                                    </p>
+                                    {% endif %}
+                                </div>
+                                <div class="reminder-actions">
+                                    <button class="btn btn-sm btn-outline-warning me-1" onclick="editReminder({{ reminder.id }})">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteReminder({{ reminder.id }})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center text-muted py-4">
+                            <i class="fas fa-bell-slash mb-2" style="font-size: 2rem;"></i>
+                            <p data-translate="no-reminders">No reminders set up yet</p>
+                            <p class="small" data-translate="add-first">Add your first medication reminder above</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab btn btn-primary" onclick="scrollToAddReminder()">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Reminder Alert Modal -->
+<div class="modal fade" id="reminderAlert" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">
+                    <i class="fas fa-bell me-2"></i>
+                    <span data-translate="medication-reminder">Medication Reminder</span>
+                </h5>
+            </div>
+            <div class="modal-body text-center">
+                <div class="reminder-alert-content">
+                    <div class="alert-icon mb-3">
+                        <i class="fas fa-pills text-warning" style="font-size: 3rem;"></i>
+                    </div>
+                    <h5 id="alertMedName">Medication Name</h5>
+                    <p class="mb-3">
+                        <strong data-translate="time-to-take">Time to take:</strong> 
+                        <span id="alertDosage">Dosage</span>
+                    </p>
+                    <p class="small text-muted" id="alertNotes"></p>
+                </div>
+                <div class="alert-actions d-flex gap-2 justify-content-center">
+                    <button class="btn btn-success" onclick="markAsTaken()">
+                        <i class="fas fa-check me-2"></i>
+                        <span data-translate="taken">Taken</span>
+                    </button>
+                    <button class="btn btn-warning" onclick="snoozeReminder()">
+                        <i class="fas fa-clock me-2"></i>
+                        <span data-translate="snooze">Snooze 15min</span>
+                    </button>
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>
+                        <span data-translate="dismiss">Dismiss</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Reminder Modal -->
+<div class="modal fade" id="editReminderModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" data-translate="edit-reminder">Edit Reminder</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editReminderForm">
+                    <input type="hidden" id="editReminderId">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="medication-name">Medication Name:</label>
+                            <input type="text" class="form-control" id="editMedName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="dosage">Dosage:</label>
+                            <input type="text" class="form-control" id="editDosage" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-translate="frequency">Frequency:</label>
+                            <select class="form-select" id="editFrequency">
+                                <option value="once_daily">Once Daily</option>
+                                <option value="twice_daily">Twice Daily</option>
+                                <option value="three_times_daily">Three Times Daily</option>
+                                <option value="four_times_daily">Four Times Daily</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" data-translate="notes">Notes:</label>
+                            <textarea class="form-control" id="editNotes" rows="2"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <span data-translate="cancel">Cancel</span>
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveEditedReminder()">
+                    <i class="fas fa-save me-2"></i>
+                    <span data-translate="save-changes">Save Changes</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/reminders.js') }}"></script>
+{% endblock %}
