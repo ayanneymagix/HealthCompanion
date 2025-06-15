@@ -1,0 +1,397 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Header Section -->
+    <div class="feature-header text-center mb-5">
+        <div class="header-icon">
+            <i class="fas fa-cog text-primary" style="font-size: 4rem;"></i>
+        </div>
+        <h1 class="mb-3">Settings</h1>
+        <p class="lead text-muted">Customize your MediTranslate+ experience</p>
+    </div>
+
+    <!-- Settings Sections -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            
+            <!-- Language Preferences -->
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-language text-primary me-2"></i>
+                        Language Preferences
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="defaultLanguage" class="form-label">Default Language</label>
+                            <select class="form-select" id="defaultLanguage">
+                                <option value="en">English</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="ta">தமிழ் (Tamil)</option>
+                                <option value="te">తెలుగు (Telugu)</option>
+                                <option value="bn">বাংলা (Bengali)</option>
+                                <option value="gu">ગુજરાતી (Gujarati)</option>
+                                <option value="mr">मराठी (Marathi)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="voiceLanguage" class="form-label">Voice Language</label>
+                            <select class="form-select" id="voiceLanguage">
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessibility Settings -->
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-universal-access text-secondary me-2"></i>
+                        Accessibility
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fontSize" class="form-label">Font Size</label>
+                            <select class="form-select" id="fontSize">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                                <option value="extra-large">Extra Large</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch mt-4">
+                                <input class="form-check-input" type="checkbox" id="highContrast">
+                                <label class="form-check-label" for="highContrast">
+                                    High Contrast Mode
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="voiceEnabled" checked>
+                                <label class="form-check-label" for="voiceEnabled">
+                                    Enable Voice Features
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="autoSpeak">
+                                <label class="form-check-label" for="autoSpeak">
+                                    Auto-speak Translations
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-bell text-warning me-2"></i>
+                        Notifications
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="medicationReminders" checked>
+                                <label class="form-check-label" for="medicationReminders">
+                                    Medication Reminders
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="healthTips" checked>
+                                <label class="form-check-label" for="healthTips">
+                                    Daily Health Tips
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="reminderSound" class="form-label">Reminder Sound</label>
+                            <select class="form-select" id="reminderSound">
+                                <option value="default">Default</option>
+                                <option value="gentle">Gentle Chime</option>
+                                <option value="urgent">Urgent Alert</option>
+                                <option value="silent">Silent (Vibration Only)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="snoozeTime" class="form-label">Snooze Duration</label>
+                            <select class="form-select" id="snoozeTime">
+                                <option value="5">5 minutes</option>
+                                <option value="10" selected>10 minutes</option>
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy & Data -->
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-shield-alt text-success me-2"></i>
+                        Privacy & Data
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="saveChatHistory" checked>
+                                <label class="form-check-label" for="saveChatHistory">
+                                    Save Chat History
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="saveTranslations" checked>
+                                <label class="form-check-label" for="saveTranslations">
+                                    Save Translation History
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-outline-danger" id="clearAllData">
+                                <i class="fas fa-trash me-2"></i>Clear All Data
+                            </button>
+                            <small class="text-muted d-block mt-2">
+                                This will permanently delete all your chat history, translations, and prescription scans.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Information -->
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-info-circle text-info me-2"></i>
+                        App Information
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Version:</strong> 1.0.0
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Last Updated:</strong> June 15, 2025
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn btn-outline-primary" onclick="window.location.href='/about'">
+                                    <i class="fas fa-info me-2"></i>About App
+                                </button>
+                                <button class="btn btn-outline-secondary" id="checkUpdates">
+                                    <i class="fas fa-sync me-2"></i>Check for Updates
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save Settings Button -->
+            <div class="text-center mb-4">
+                <button class="btn btn-primary btn-lg" id="saveSettings">
+                    <i class="fas fa-save me-2"></i>Save Settings
+                </button>
+                <button class="btn btn-outline-secondary btn-lg ms-2" id="resetSettings">
+                    <i class="fas fa-undo me-2"></i>Reset to Default
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Settings functionality
+document.addEventListener('DOMContentLoaded', function() {
+    loadSettings();
+    
+    // Save settings
+    document.getElementById('saveSettings').addEventListener('click', saveSettings);
+    
+    // Reset settings
+    document.getElementById('resetSettings').addEventListener('click', resetSettings);
+    
+    // Clear all data
+    document.getElementById('clearAllData').addEventListener('click', clearAllData);
+    
+    // Check for updates
+    document.getElementById('checkUpdates').addEventListener('click', checkForUpdates);
+    
+    // Auto-save on change
+    document.querySelectorAll('.form-control, .form-select, .form-check-input').forEach(element => {
+        element.addEventListener('change', autoSaveSettings);
+    });
+});
+
+function loadSettings() {
+    const settings = JSON.parse(localStorage.getItem('mediTranslateSettings') || '{}');
+    
+    // Load language settings
+    if (settings.defaultLanguage) {
+        document.getElementById('defaultLanguage').value = settings.defaultLanguage;
+    }
+    if (settings.voiceLanguage) {
+        document.getElementById('voiceLanguage').value = settings.voiceLanguage;
+    }
+    
+    // Load accessibility settings
+    if (settings.fontSize) {
+        document.getElementById('fontSize').value = settings.fontSize;
+    }
+    document.getElementById('highContrast').checked = settings.highContrast || false;
+    document.getElementById('voiceEnabled').checked = settings.voiceEnabled !== false;
+    document.getElementById('autoSpeak').checked = settings.autoSpeak || false;
+    
+    // Load notification settings
+    document.getElementById('medicationReminders').checked = settings.medicationReminders !== false;
+    document.getElementById('healthTips').checked = settings.healthTips !== false;
+    if (settings.reminderSound) {
+        document.getElementById('reminderSound').value = settings.reminderSound;
+    }
+    if (settings.snoozeTime) {
+        document.getElementById('snoozeTime').value = settings.snoozeTime;
+    }
+    
+    // Load privacy settings
+    document.getElementById('saveChatHistory').checked = settings.saveChatHistory !== false;
+    document.getElementById('saveTranslations').checked = settings.saveTranslations !== false;
+}
+
+function saveSettings() {
+    const settings = {
+        defaultLanguage: document.getElementById('defaultLanguage').value,
+        voiceLanguage: document.getElementById('voiceLanguage').value,
+        fontSize: document.getElementById('fontSize').value,
+        highContrast: document.getElementById('highContrast').checked,
+        voiceEnabled: document.getElementById('voiceEnabled').checked,
+        autoSpeak: document.getElementById('autoSpeak').checked,
+        medicationReminders: document.getElementById('medicationReminders').checked,
+        healthTips: document.getElementById('healthTips').checked,
+        reminderSound: document.getElementById('reminderSound').value,
+        snoozeTime: document.getElementById('snoozeTime').value,
+        saveChatHistory: document.getElementById('saveChatHistory').checked,
+        saveTranslations: document.getElementById('saveTranslations').checked
+    };
+    
+    localStorage.setItem('mediTranslateSettings', JSON.stringify(settings));
+    
+    // Apply settings immediately
+    applySettings(settings);
+    
+    showNotification('Settings saved successfully!', 'success');
+}
+
+function autoSaveSettings() {
+    // Auto-save after a short delay
+    clearTimeout(window.settingsTimeout);
+    window.settingsTimeout = setTimeout(saveSettings, 1000);
+}
+
+function applySettings(settings) {
+    // Apply font size
+    document.body.className = document.body.className.replace(/font-size-\w+/g, '');
+    if (settings.fontSize && settings.fontSize !== 'medium') {
+        document.body.classList.add(`font-size-${settings.fontSize}`);
+    }
+    
+    // Apply high contrast
+    if (settings.highContrast) {
+        document.body.classList.add('high-contrast');
+    } else {
+        document.body.classList.remove('high-contrast');
+    }
+    
+    // Update global language setting
+    if (typeof updateLanguageDisplay === 'function') {
+        currentLanguage = settings.defaultLanguage || 'en';
+        updateLanguageDisplay();
+    }
+}
+
+function resetSettings() {
+    if (confirm('Are you sure you want to reset all settings to default? This cannot be undone.')) {
+        localStorage.removeItem('mediTranslateSettings');
+        location.reload();
+    }
+}
+
+function clearAllData() {
+    if (confirm('Are you sure you want to clear all data? This will permanently delete your chat history, translations, and prescription scans. This cannot be undone.')) {
+        // Clear localStorage
+        Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('mediTranslate') || key.startsWith('chat') || key.startsWith('translation')) {
+                localStorage.removeItem(key);
+            }
+        });
+        
+        showNotification('All data cleared successfully!', 'success');
+    }
+}
+
+function checkForUpdates() {
+    showNotification('Checking for updates...', 'info');
+    
+    // Simulate update check
+    setTimeout(() => {
+        showNotification('You are using the latest version!', 'success');
+    }, 2000);
+}
+</script>
+
+<style>
+.font-size-small { font-size: 14px !important; }
+.font-size-large { font-size: 20px !important; }
+.font-size-extra-large { font-size: 24px !important; }
+
+.high-contrast {
+    filter: contrast(1.5);
+}
+
+.high-contrast .card {
+    border: 2px solid var(--primary-color) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.card-header {
+    border-bottom: 1px solid var(--medium-gray);
+}
+</style>
+{% endblock %}

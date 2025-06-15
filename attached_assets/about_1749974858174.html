@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}About - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Header Section -->
+    <div class="feature-header text-center mb-5">
+        <div class="header-icon">
+            <i class="fas fa-info-circle text-primary" style="font-size: 4rem;"></i>
+        </div>
+        <h1 class="mb-3">About MediTranslate+</h1>
+        <p class="lead text-muted">Bridging language barriers in healthcare for rural communities</p>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-4">
+                        <i class="fas fa-heart text-danger me-2"></i>
+                        Our Mission
+                    </h3>
+                    <p class="text-center fs-5">
+                        To make healthcare accessible for everyone by breaking down language barriers 
+                        and providing intelligent health guidance through cutting-edge AI technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Overview -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h3 class="text-center mb-4">What We Offer</h3>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="text-center">
+                <div class="feature-icon-about mb-3">
+                    <i class="fas fa-language text-primary"></i>
+                </div>
+                <h5>AI Translation</h5>
+                <p class="text-muted">Accurate medical translation in multiple Indian languages</p>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="text-center">
+                <div class="feature-icon-about mb-3">
+                    <i class="fas fa-robot text-secondary"></i>
+                </div>
+                <h5>Health Assistant</h5>
+                <p class="text-muted">24/7 AI-powered healthcare guidance and support</p>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="text-center">
+                <div class="feature-icon-about mb-3">
+                    <i class="fas fa-camera text-success"></i>
+                </div>
+                <h5>Prescription Scanner</h5>
+                <p class="text-muted">Smart OCR technology to read and organize prescriptions</p>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="text-center">
+                <div class="feature-icon-about mb-3">
+                    <i class="fas fa-bell text-warning"></i>
+                </div>
+                <h5>Medication Reminders</h5>
+                <p class="text-muted">Never miss a dose with intelligent scheduling</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Section -->
+    <div class="row mb-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">
+                        <i class="fas fa-cogs text-primary me-2"></i>
+                        Powered by Advanced Technology
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fab fa-google text-primary me-2"></i>Google Gemini AI</h5>
+                            <p>Advanced language processing for accurate medical translations and intelligent health guidance</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fas fa-eye text-secondary me-2"></i>OCR Technology</h5>
+                            <p>Tesseract-powered optical character recognition for prescription scanning</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fas fa-microphone text-success me-2"></i>Voice Recognition</h5>
+                            <p>Web Speech API for hands-free interaction and accessibility</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fas fa-mobile-alt text-warning me-2"></i>Progressive Web App</h5>
+                            <p>Works offline and can be installed on any device for easy access</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h3 class="mb-4">Built with Care</h3>
+            <p class="lead">
+                MediTranslate+ is developed with a focus on accessibility, simplicity, and effectiveness. 
+                Our goal is to ensure that language is never a barrier to receiving quality healthcare.
+            </p>
+            <div class="mt-4">
+                <span class="badge bg-primary me-2 p-2">Healthcare Innovation</span>
+                <span class="badge bg-secondary me-2 p-2">AI Technology</span>
+                <span class="badge bg-success me-2 p-2">Rural Healthcare</span>
+                <span class="badge bg-warning p-2">Digital Accessibility</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body p-4">
+                    <h4 class="mb-3">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        Get in Touch
+                    </h4>
+                    <p class="text-muted mb-4">
+                        Have questions or suggestions? We'd love to hear from you.
+                    </p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-primary" onclick="window.location.href='mailto:support@meditranslate.com'">
+                            <i class="fas fa-envelope me-2"></i>Contact Support
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="window.location.href='/settings'">
+                            <i class="fas fa-cog me-2"></i>Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.feature-icon-about {
+    font-size: 3rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon-about i {
+    transition: transform 0.3s ease;
+}
+
+.feature-icon-about:hover i {
+    transform: scale(1.1);
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}

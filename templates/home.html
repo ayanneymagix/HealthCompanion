@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block title %}Home - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <!-- Welcome Section -->
+    <div class="welcome-section text-center mb-5 fade-in-up">
+        <div class="welcome-icon mb-3 bounce-in">
+            <i class="fas fa-heartbeat text-primary pulse" style="font-size: 4rem;"></i>
+        </div>
+        <h1 class="display-4 fw-bold text-primary mb-3 slide-in-left" data-translate="welcome-title">
+            Welcome to MediTranslate+
+        </h1>
+        <p class="lead text-muted slide-in-right" data-translate="welcome-subtitle">
+            Your AI-powered healthcare companion for rural communities
+        </p>
+        <div class="welcome-stats mt-4 row g-3 fade-in-up" style="animation-delay: 0.5s;">
+            <div class="col-md-3 col-6">
+                <div class="stat-card hover-lift">
+                    <div class="stat-number">1K+</div>
+                    <div class="stat-label">Translations</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card hover-lift">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Users Helped</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card hover-lift">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Languages</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card hover-lift">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="row g-4">
+        <!-- Translator Card -->
+        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.1s;">
+            <div class="feature-card h-100 hover-lift glow-on-hover" onclick="location.href='{{ url_for('translator') }}'">
+                <div class="card-body text-center p-4">
+                    <div class="feature-icon mb-3 bounce-in">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3" data-translate="translator-title">
+                        AI Translator
+                    </h4>
+                    <p class="card-text" data-translate="translator-desc">
+                        Translate medical terms with voice input and audio output
+                    </p>
+                    <div class="feature-badges mt-3">
+                        <span class="badge me-2 hover-glow">
+                            <i class="fas fa-microphone me-1"></i>Voice
+                        </span>
+                        <span class="badge hover-glow">
+                            <i class="fas fa-volume-up me-1"></i>Audio
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chatbot Card -->
+        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.2s;">
+            <div class="feature-card h-100 hover-lift glow-on-hover" onclick="location.href='{{ url_for('chatbot') }}'">
+                <div class="card-body text-center p-4">
+                    <div class="feature-icon mb-3 bounce-in">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3" data-translate="chatbot-title">
+                        Health Assistant
+                    </h4>
+                    <p class="card-text" data-translate="chatbot-desc">
+                        Get instant health guidance from our intelligent AI assistant
+                    </p>
+                    <div class="feature-badges mt-3">
+                        <span class="badge me-2 hover-glow">
+                            <i class="fas fa-comments me-1"></i>Chat
+                        </span>
+                        <span class="badge hover-glow">
+                            <i class="fas fa-stethoscope me-1"></i>Medical
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prescription Scanner Card -->
+        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.3s;">
+            <div class="feature-card h-100 hover-lift glow-on-hover" onclick="location.href='{{ url_for('prescription') }}'">
+                <div class="card-body text-center p-4">
+                    <div class="feature-icon mb-3 bounce-in">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3" data-translate="scanner-title">
+                        Scan Prescription
+                    </h4>
+                    <p class="card-text" data-translate="scanner-desc">
+                        Smart OCR scanning with automatic reminder scheduling
+                    </p>
+                    <div class="feature-badges mt-3">
+                        <span class="badge me-2 hover-glow">
+                            <i class="fas fa-scan me-1"></i>OCR
+                        </span>
+                        <span class="badge hover-glow">
+                            <i class="fas fa-calendar-plus me-1"></i>Auto-Schedule
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reminders Card -->
+        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.4s;">
+            <div class="feature-card h-100 hover-lift glow-on-hover" onclick="location.href='{{ url_for('reminders') }}'">
+                <div class="card-body text-center p-4">
+                    <div class="feature-icon mb-3 bounce-in">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3" data-translate="reminders-title">
+                        Med Reminders
+                    </h4>
+                    <p class="card-text" data-translate="reminders-desc">
+                        Smart medication scheduling with customizable alerts
+                    </p>
+                    <div class="feature-badges mt-3">
+                        <span class="badge me-2 hover-glow">
+                            <i class="fas fa-clock me-1"></i>Alerts
+                        </span>
+                        <span class="badge hover-glow">
+                            <i class="fas fa-pills me-1"></i>Tracking
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Card -->
+        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.5s;">
+            <div class="feature-card h-100 hover-lift glow-on-hover" onclick="location.href='{{ url_for('about') }}'">
+                <div class="card-body text-center p-4">
+                    <div class="feature-icon mb-3 bounce-in">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3" data-translate="about-title">
+                        About App
+                    </h4>
+                    <p class="card-text" data-translate="about-desc">
+                        Learn about our mission and advanced AI technology
+                    </p>
+                    <div class="feature-badges mt-3">
+                        <span class="badge me-2 hover-glow">
+                            <i class="fas fa-heart me-1"></i>Mission
+                        </span>
+                        <span class="badge hover-glow">
+                            <i class="fas fa-cogs me-1"></i>Tech
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="col-lg-4 col-md-6 fade-in-up" style="animation-delay: 0.6s;">
+            <div class="feature-card h-100 hover-lift glow-on-hover" onclick="location.href='{{ url_for('settings') }}'">
+                <div class="card-body text-center p-4">
+                    <div class="feature-icon mb-3 bounce-in">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3" data-translate="settings-title">
+                        Settings
+                    </h4>
+                    <p class="card-text" data-translate="settings-desc">
+                        Customize language, accessibility, and preferences
+                    </p>
+                    <div class="feature-badges mt-3">
+                        <span class="badge me-2 hover-glow">
+                            <i class="fas fa-palette me-1"></i>Themes
+                        </span>
+                        <span class="badge hover-glow">
+                            <i class="fas fa-language me-1"></i>Language
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Access Panel -->
+    <div class="quick-access-panel mt-5 fade-in-up" style="animation-delay: 0.7s;">
+        <div class="card border-0 shadow-sm hover-lift">
+            <div class="card-body">
+                <h5 class="card-title text-center mb-4" data-translate="quick-access">
+                    <i class="fas fa-bolt text-warning me-2 pulse"></i>Quick Access
+                </h5>
+                <div class="row text-center">
+                    <div class="col-3">
+                        <button class="btn btn-outline-primary btn-lg w-100 hover-glow hover-lift" onclick="startVoiceTranslation()">
+                            <i class="fas fa-microphone-alt d-block mb-2 pulse"></i>
+                            <small data-translate="voice-translate">Voice Translate</small>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-outline-success btn-lg w-100 hover-glow hover-lift" onclick="openEmergencyChat()">
+                            <i class="fas fa-ambulance d-block mb-2 pulse"></i>
+                            <small data-translate="emergency">Emergency</small>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-outline-info btn-lg w-100 hover-glow hover-lift" onclick="quickScan()">
+                            <i class="fas fa-qrcode d-block mb-2 pulse"></i>
+                            <small data-translate="quick-scan">Quick Scan</small>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-outline-warning btn-lg w-100 hover-glow hover-lift" onclick="viewTodayMeds()">
+                            <i class="fas fa-capsules d-block mb-2 pulse"></i>
+                            <small data-translate="today-meds">Today's Meds</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Tips -->
+    <div class="usage-tips mt-4 fade-in-up" style="animation-delay: 0.8s;">
+        <div class="card bg-themed border-0 hover-lift">
+            <div class="card-body">
+                <h6 class="card-title text-muted mb-3">
+                    <i class="fas fa-lightbulb me-2 pulse"></i><span data-translate="tips-title">Usage Tips</span>
+                </h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <small class="text-muted">
+                            <i class="fas fa-microphone text-primary me-2"></i>
+                            <span data-translate="tip-voice">Use voice input for hands-free operation</span>
+                        </small>
+                    </div>
+                    <div class="col-md-6">
+                        <small class="text-muted">
+                            <i class="fas fa-wifi text-success me-2"></i>
+                            <span data-translate="tip-offline">Works offline for basic features</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Quick access functions
+function startVoiceTranslation() {
+    location.href = '{{ url_for('translator') }}?voice=true';
+}
+
+function openEmergencyChat() {
+    location.href = '{{ url_for('chatbot') }}?emergency=true';
+}
+
+function quickScan() {
+    location.href = '{{ url_for('prescription') }}?quick=true';
+}
+
+function viewTodayMeds() {
+    location.href = '{{ url_for('reminders') }}?view=today';
+}
+
+// Initialize home page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add staggered animation to feature cards
+    const cards = document.querySelectorAll('.feature-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('fade-in-up');
+    });
+    
+    console.log('MediTranslate+ Home loaded');
+});
+</script>
+{% endblock %}

@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Health Assistant - MediTranslate+{% endblock %}
+
+{% block content %}
+<div class="chatbot-container">
+    <!-- Header -->
+    <div class="feature-header text-center mb-4">
+        <div class="header-icon mb-3">
+            <i class="fas fa-robot text-success" style="font-size: 3rem;"></i>
+        </div>
+        <h2 class="fw-bold text-success" data-translate="chatbot-header">Health Assistant</h2>
+        <p class="text-muted" data-translate="chatbot-subheader">
+            Get instant health guidance from our AI medical assistant
+        </p>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-success text-white">
+                <div class="d-flex align-items-center">
+                    <div class="avatar me-3">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0" data-translate="assistant-name">MediBot Assistant</h6>
+                        <small class="opacity-75" data-translate="assistant-status">Online - Ready to help</small>
+                    </div>
+                    <div class="ms-auto">
+                        <button class="btn btn-sm btn-outline-light" onclick="clearChat()">
+                            <i class="fas fa-trash me-1"></i>
+                            <span data-translate="clear-chat">Clear</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div class="card-body p-0">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome Message -->
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot text-success"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                <p class="mb-2" data-translate="welcome-message">
+                                    Hello! I'm MediBot, your healthcare assistant. I can help you with:
+                                </p>
+                                <ul class="mb-0">
+                                    <li data-translate="help-symptoms">Understanding symptoms</li>
+                                    <li data-translate="help-medications">Basic medication information</li>
+                                    <li data-translate="help-wellness">General wellness tips</li>
+                                    <li data-translate="help-emergency">Emergency guidance</li>
+                                </ul>
+                                <p class="mt-2 small text-muted" data-translate="disclaimer">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>
+                                    Remember: Always consult a doctor for serious health concerns.
+                                </p>
+                            </div>
+                            <small class="text-muted">Just now</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="card-footer bg-light">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        class="form-control form-control-lg" 
+                        id="messageInput" 
+                        placeholder="Type your health question..."
+                        data-translate-placeholder="message-placeholder"
+                    >
+                    <button class="btn btn-primary" id="voiceChatBtn" onclick="startVoiceChat()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="btn btn-success" id="sendBtn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                
+                <!-- Quick Suggestions -->
+                <div class="quick-suggestions mt-3">
+                    <small class="text-muted mb-2 d-block" data-translate="quick-questions">Quick Questions:</small>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-success btn-sm" onclick="askQuestion('I have a headache, what should I do?')">
+                            <i class="fas fa-head-side-cough me-1"></i>Headache Help
+                        </button>
+                        <button class="btn btn-outline-success btn-sm" onclick="askQuestion('What are the symptoms of fever?')">
+                            <i class="fas fa-thermometer-half me-1"></i>Fever Symptoms
+                        </button>
+                        <button class="btn btn-outline-success btn-sm" onclick="askQuestion('How to prevent common cold?')">
+                            <i class="fas fa-shield-virus me-1"></i>Cold Prevention
+                        </button>
+                        <button class="btn btn-outline-success btn-sm" onclick="askQuestion('When should I see a doctor?')">
+                            <i class="fas fa-user-md me-1"></i>Doctor Visit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Actions -->
+    <div class="emergency-actions mt-4">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h6 class="mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span data-translate="emergency-header">Emergency Actions</span>
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-danger btn-lg w-100 mb-2" onclick="callEmergency()">
+                            <i class="fas fa-phone d-block mb-1"></i>
+                            <small data-translate="call-emergency">Call 108</small>
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-warning btn-lg w-100 mb-2" onclick="findHospital()">
+                            <i class="fas fa-hospital d-block mb-1"></i>
+                            <small data-translate="find-hospital">Find Hospital</small>
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-info btn-lg w-100 mb-2" onclick="firstAidGuide()">
+                            <i class="fas fa-first-aid d-block mb-1"></i>
+                            <small data-translate="first-aid">First Aid</small>
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-primary btn-lg w-100 mb-2" onclick="shareLocation()">
+                            <i class="fas fa-map-marker-alt d-block mb-1"></i>
+                            <small data-translate="share-location">Share Location</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Loading -->
+    <div class="text-center mt-3" id="chatLoading" style="display: none;">
+        <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Getting response...</span>
+        </div>
+        <p class="mt-2 text-muted" data-translate="getting-response">Getting response from MediBot...</p>
+    </div>
+</div>
+
+<!-- Voice Chat Modal -->
+<div class="modal fade" id="voiceChatModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" data-translate="voice-chat">Voice Chat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="voice-animation mb-3">
+                    <i class="fas fa-microphone text-success" style="font-size: 3rem;" id="chatMicIcon"></i>
+                </div>
+                <p id="voiceChatStatus" data-translate="speak-question">Speak your health question</p>
+                <div class="voice-controls mt-3">
+                    <button class="btn btn-danger me-2" onclick="stopVoiceChat()">
+                        <i class="fas fa-stop me-2"></i>Stop
+                    </button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+{% endblock %}
